@@ -1,13 +1,13 @@
-import { useCallback, useState } from "react";
-import Square from "./components/Square";
-import Reset from "./components/Reset";
-import { DEFAULT_SQUARES_STATE, LINES } from "./consts";
+import { useState } from "react";
+import Square from "../Square";
+import Reset from "../Reset";
+import { DEFAULT_SQUARES_STATE, LINES } from "../../consts";
 
 const Board = () => {
     const [xIsNext, setXIsNext] = useState(true);
     const [squares, setSquares] = useState(DEFAULT_SQUARES_STATE);
 
-    const calculateWinner = useCallback(() => {
+    const calculateWinner = () => {
         const winningLine = LINES.find(
             ([a, b, c]) =>
                 squares[a] &&
@@ -16,7 +16,7 @@ const Board = () => {
         );
 
         return winningLine ? squares[winningLine[0]] : null;
-    }, [squares]);
+    };
 
     const resetBoard = () => {
         setSquares(DEFAULT_SQUARES_STATE);
